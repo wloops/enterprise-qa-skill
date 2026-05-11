@@ -6,22 +6,15 @@ import os
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SCHEMA = HERE / ".." / ".." / ".." / "enterprise-qa-data" / "schema.sql"
-SEED = HERE / ".." / ".." / ".." / "enterprise-qa-data" / "seed_data.sql"
 DB = HERE / "enterprise.db"
+SCHEMA_SQL = HERE / "schema.sql"
+SEED_SQL = HERE / "seed_data.sql"
 
 
 def main():
-    # 查找 SQL 文件位置
-    if SCHEMA.exists():
-        schema_path, seed_path = SCHEMA, SEED
-    else:
-        # 如果数据文件已复制到 skill 目录下
-        schema_path = HERE / "schema.sql"
-        seed_path = HERE / "seed_data.sql"
-        if not schema_path.exists():
-            print("错误：未找到 schema.sql，请将 schema.sql 和 seed_data.sql 放在当前目录")
-            sys.exit(1)
+    if not SCHEMA_SQL.exists() or not SEED_SQL.exists():
+        print("错误：未找到 schema.sql 或 seed_data.sql，请确保这两个文件在当前目录")
+        sys.exit(1)
 
     print("=" * 50)
     print("  企业智能问答助手 - 数据库初始化")
@@ -32,9 +25,9 @@ def main():
         print("✓ 清理旧数据库...")
 
     conn = sqlite3.connect(str(DB))
-    conn.executescript(schema_path.read_text(encoding="utf-8"))
+    conn.executescript(SCHEMA_SQL.read_text(encoding="utf-8"))
     print("✓ 创建表结构...")
-    conn.executescript(seed_path.read_text(encoding="utf-8"))
+    conn.executescript(SEED_SQL.read_text(encoding="utf-8"))
     print("✓ 导入种子数据...")
     conn.commit()
 
