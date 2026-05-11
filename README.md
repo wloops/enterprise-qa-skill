@@ -16,17 +16,21 @@
 ## 安装
 
 ```bash
-# 1. 复制到目标项目
+# 方式 A — Git 克隆（推荐）
+git clone https://github.com/wloops/enterprise-qa-skill-demo.git
+mv enterprise-qa-skill-demo /path/to/project/.claude/skills/enterprise-qa
+
+# 方式 B — 手动复制
 cp -r enterprise-qa /path/to/project/.claude/skills/enterprise-qa
 
-# 2. 安装依赖 (Python 3.10+)
+# 安装依赖 (Python 3.10+)
 cd .claude/skills/enterprise-qa
 pip install -r requirements.txt
 
-# 3. 初始化数据库
+# 初始化数据库
 python init_db.py
 
-# 4. 配置数据源 (二选一)
+# 配置数据源 (二选一)
 # 方式 A — 环境变量:
 export ENTERPRISE_QA_DB_PATH="./enterprise.db"
 export ENTERPRISE_QA_KB_PATH="./knowledge"
