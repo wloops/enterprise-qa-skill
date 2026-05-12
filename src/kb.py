@@ -29,7 +29,7 @@ def _now() -> str:
 class KBSearcher:
     """知识库搜索引擎"""
 
-    def __init__(self, kb_path: Optional[str] = None):
+    def __init__(self, kb_path: Optional[str] = None) -> None:
         self.root = Path(kb_path or config.kb_path).resolve()
         self.index_type = config.kb_index_type  # bm25 | keyword
         self._docs: list[dict] = []  # [{"path": ..., "section": ..., "text": ..., "source": ...}]
@@ -37,7 +37,7 @@ class KBSearcher:
         self._corpus: list[list[str]] = []
         self._build_index()
 
-    def _build_index(self):
+    def _build_index(self) -> None:
         """扫描知识库目录，建立索引"""
         if not self.root.exists():
             return

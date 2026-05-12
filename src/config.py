@@ -4,7 +4,7 @@
 """
 import os
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 
 class Config:
@@ -15,7 +15,7 @@ class Config:
         self.kb_index_type = "bm25"  # bm25 | keyword
         self._load(config_path)
 
-    def _load(self, config_path: Optional[str]):
+    def _load(self, config_path: Optional[str]) -> None:
         opts = _try_load_yaml(config_path)
         self.db_path = _first_of(
             os.environ.get("ENTERPRISE_QA_DB_PATH"),
@@ -52,7 +52,7 @@ def _try_load_yaml(config_path: Optional[str]) -> dict:
     return {}
 
 
-def _first_of(*args):
+def _first_of(*args: Any) -> str:
     for v in args:
         if v is not None and v != "":
             return str(v)

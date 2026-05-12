@@ -31,7 +31,7 @@ def _connect(readonly: bool = True):
         conn.close()
 
 
-def _query(sql: str, params: tuple = (), readonly: bool = True):
+def _query(sql: str, params: tuple = (), readonly: bool = True) -> list[dict]:
     """内部查询执行器"""
     with _connect(readonly) as conn:
         cur = conn.execute(sql, params)

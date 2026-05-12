@@ -32,7 +32,7 @@ SCHEMA_HELP = """
 """.strip()
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description="企业智能问答助手 - 数据查询工具")
     sub = parser.add_subparsers(dest="command")
 
