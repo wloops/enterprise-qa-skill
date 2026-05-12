@@ -17,8 +17,8 @@
 
 ```bash
 # 方式 A — Git 克隆（推荐）
-git clone https://github.com/wloops/enterprise-qa-skill-demo.git
-mv enterprise-qa-skill-demo /path/to/project/.claude/skills/enterprise-qa
+git clone https://github.com/wloops/enterprise-qa-skill.git
+mv enterprise-qa-skill /path/to/project/.claude/skills/enterprise-qa
 
 # 方式 B — 手动复制
 cp -r enterprise-qa /path/to/project/.claude/skills/enterprise-qa
